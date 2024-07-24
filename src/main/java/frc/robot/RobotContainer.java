@@ -4,7 +4,10 @@
 
 package frc.robot;
 
+import com.ctre.phoenix6.hardware.TalonFX;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -19,7 +22,27 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  public final Drivetrain m_drivetrain = new Drivetrain();
+  public final Drivetrain drivetrain = new Drivetrain();
+
+  
+  /** Uncomment this section, uncomment drivetrain.setDefault..., and comment in 
+   *  m_drivetrain.arcadeDrive... in Drivetrain.java to put drive command control 
+   *  in RobotContainer.java.
+
+    -------
+        public final XboxController m_driverController =
+            new XboxController(OperatorConstants.kDriverControllerPort);
+
+        TalonFX rightFrontMotor = new TalonFX(11);
+        TalonFX rightBackMotor = new TalonFX(10);
+        MotorControllerGroup m_right = new MotorControllerGroup(rightFrontMotor, rightBackMotor);
+        TalonFX leftFrontMotor = new TalonFX(13);
+        TalonFX leftBackMotor = new TalonFX(12);
+        MotorControllerGroup m_left = new MotorControllerGroup(leftFrontMotor, leftBackMotor);
+        DifferentialDrive m_drivetrain = new DifferentialDrive(m_left, m_right);
+    -------
+
+  */
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
 
@@ -27,6 +50,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the trigger bindings
     configureBindings();
+    //drivetrain.setDefaultCommand(drivetrain.drive(m_driverController.getRightX(), m_driverController.getLeftY()));
   }
 
   /**

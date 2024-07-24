@@ -47,6 +47,9 @@ public class Drivetrain extends SubsystemBase {
     return false;
   }
 
+//-=-=-=-=-=-=- Change the below code in the future to put the drive method in the Robot.java file
+//              with teleopPeriodic or in the RobotContainer.java file with 
+
   @Override
   public void periodic() {
     m_drivetrain.feed();
@@ -57,5 +60,17 @@ public class Drivetrain extends SubsystemBase {
   @Override
   public void simulationPeriodic() {
     // This method will be called once per scheduler run during simulation
+  }
+
+// DO NOT DELETE BELOW COMMAND UNLESS YOU WANT TO GET RID OF DRIVETRAIN CONTROL FROM RobotContainer.java
+// This command is CURRENTLY not being used, as the drive controls are run from this subsystem, the drivetrain, instead.
+
+  public Command drive(double xSpeed_getRightX, double zRotation_getLeftY) {
+    // Inline construction of command goes here.
+    // Subsystem::RunOnce implicitly requires `this` subsystem.
+    return run(
+        () -> {
+          m_drivetrain.arcadeDrive(-0.7*xSpeed_getRightX, -0.7*zRotation_getLeftY);
+        });
   }
 }
